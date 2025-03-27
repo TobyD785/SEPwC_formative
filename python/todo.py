@@ -19,14 +19,13 @@ def list_tasks():
     Return - a string of numbered tasks
     """
     
-    if not os.path.exists(TASK_FILE):
+    if not os.path.exists(TASK_FILE):    #checking file exists
         return ""
     
-    with open(TASK_FILE, "r") as f:
+    with open(TASK_FILE, "r") as f:    
         read = f.readlines()
         
-    return
-
+    return "".join(f"{i+1}. {task}" for i, task in enumerate(read))    #combines and numbers tasks
 
 def remove_task(index):
     return
