@@ -10,10 +10,18 @@ def add_task(task):
     Return - nothing
     """
     
-    with open(TASK_FILE, "a") as f:    #append ensures text is always inserted at the end of the file
+    with open(TASK_FILE, "a") as f:    #text is inserted at the end of the file
         f.write(task + "\n")
 
 def list_tasks():
+    """Function: list_tasks
+    
+    Return - a string of numbered tasks
+    """
+    
+    if not os.path.exists(TASK_FILE):
+        return ""
+    
     return
 
 
