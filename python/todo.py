@@ -46,7 +46,7 @@ def remove_task(index):
     del tasks[index - 1]
     
     with open(TASK_FILE, "w") as f:
-        f.writeline(tasks)
+        f.writelines(tasks)    #rewiting the list without the removed task
 
     return
 
