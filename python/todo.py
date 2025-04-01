@@ -25,7 +25,7 @@ def list_tasks():
     with open(TASK_FILE, "r") as f:    
         read = f.readlines()
         
-    return "".join(f"{i+1}. {task}" for i, task in enumerate(read))    #combines and numbers tasks
+    return "\n".join(f"{i+1}. {task.strip()}" for i, task in enumerate(read)).strip()    #combines and numbers tasks
 
 def remove_task(index):
     return
