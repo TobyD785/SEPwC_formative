@@ -42,6 +42,11 @@ def remove_task(index):
         
     if index <= 0 or index > len(tasks):    #ensuring the task exists to remove
         return
+    
+    del tasks[index - 1]
+    
+    with open(TASK_FILE, "w") as f:
+        f.writeline(tasks)
 
     return
 
