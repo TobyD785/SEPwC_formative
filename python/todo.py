@@ -5,48 +5,54 @@ TASK_FILE = ".tasks.txt"
 
 def add_task(task):
     """Function: add_task
-    
+
     Input - a task to add to the list
     Return - nothing
     """
-    
-    with open(TASK_FILE, "a") as f:    #text is inserted at the end of the file
+
+    with open(TASK_FILE, "a") as f:
+#insert text at the end of the file
         f.write(task + "\n")
 
 def list_tasks():
     """Function: list_tasks
-    
+
     Return - a string of numbered tasks
     """
-    
-    if not os.path.exists(TASK_FILE):    #checking file exists
+
+    if not os.path.exists(TASK_FILE):
+#checking file exists
         return ""
-    
-    with open(TASK_FILE, "r") as f:    
+
+    with open(TASK_FILE, "r") as f:
         read = f.readlines()
-        
-    return "\n".join(f"{i+1}. {task.strip()}" for i, task in enumerate(read)).strip()    #combines and numbers tasks
+
+    listing = "\n".join(f"{i+1}. {task.strip()}" for i, task in enumerate(read) if task.strip())
+#combines and numbers tasks
+    return listing
 
 def remove_task(index):
     """Function: remove_task
-    
+
     Input - index of the task to remove
     Return - nothing
     """
-    
+
     if not os.path.exists(TASK_FILE):
         return
 
     with open(TASK_FILE, "r") as f:
         tasks = f.readlines()
-        
-    if index <= 0 or index > len(tasks):    #ensuring the task exists to remove
+
+    if index <= 0 or index > len(tasks):
+#ensuring the task exists to remove
         return
-    
+
     del tasks[index - 1]
-    
+
     with open(TASK_FILE, "w") as f:
-        f.writelines(tasks)    #rewiting the list without the removed task
+        f.writelines(tasks)
+#rewiting the list without the removed task
 
     return
 
