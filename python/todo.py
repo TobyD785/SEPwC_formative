@@ -1,3 +1,9 @@
+"""
+todo.py is a simple python script that
+keeps a list in a text file
+
+users may read, add or remove tasks
+"""
 import argparse
 import os
 
@@ -10,7 +16,7 @@ def add_task(task):
     Return - nothing
     """
 
-    with open(TASK_FILE, "a") as f:
+    with open(TASK_FILE, "a", encoding="utf-8") as f:
 #insert text at the end of the file
         f.write(task + "\n")
 
@@ -24,7 +30,7 @@ def list_tasks():
 #checking file exists
         return ""
 
-    with open(TASK_FILE, "r") as f:
+    with open(TASK_FILE, "r", encoding="utf-8") as f:
         read = f.readlines()
 
     listing = "\n".join(f"{i+1}. {task.strip()}" for i, task in enumerate(read) if task.strip())
@@ -41,7 +47,7 @@ def remove_task(index):
     if not os.path.exists(TASK_FILE):
         return
 
-    with open(TASK_FILE, "r") as f:
+    with open(TASK_FILE, "r", encoding="utf-8") as f:
         tasks = f.readlines()
 
     if index <= 0 or index > len(tasks):
@@ -50,13 +56,19 @@ def remove_task(index):
 
     del tasks[index - 1]
 
-    with open(TASK_FILE, "w") as f:
+    with open(TASK_FILE, "w", encoding="utf-8") as f:
         f.writelines(tasks)
 #rewiting the list without the removed task
 
     return
 
 def main():
+    """
+    Function: main
+    
+    Input - nothing
+    Return - nothing
+    """
     parser = argparse.ArgumentParser(description="Command-line Todo List")
     parser.add_argument(
             "-a",
