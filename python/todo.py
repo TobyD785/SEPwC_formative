@@ -28,6 +28,21 @@ def list_tasks():
     return "\n".join(f"{i+1}. {task.strip()}" for i, task in enumerate(read)).strip()    #combines and numbers tasks
 
 def remove_task(index):
+    """Function: remove_task
+    
+    Input - index of the task to remove
+    Return - nothing
+    """
+    
+    if not os.path.exists(TASK_FILE):
+        return
+
+    with open(TASK_FILE, "r") as f:
+        tasks = f.readlines()
+        
+    if index <= 0 or index > len(tasks):    #ensuring the task exists to remove
+        return
+
     return
 
 def main():
